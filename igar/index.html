@@ -6,7 +6,7 @@
     <title>IGAR | Restoring Linguistic Grounding in VLA Models</title>
     <meta
       name="description"
-      content="ECCV 2026 Poster project page for Restoring Linguistic Grounding in VLA Models via Train-Free Attention Recalibration."
+      content="ECCV 2026 project page for Restoring Linguistic Grounding in VLA Models via Train-Free Attention Recalibration."
     >
     <meta
       name="keywords"
@@ -16,7 +16,7 @@
     <meta property="og:title" content="Restoring Linguistic Grounding in VLA Models">
     <meta
       property="og:description"
-      content="ECCV 2026 Poster: IGAR restores instruction sensitivity in Vision-Language-Action models under contradictory instructions."
+      content="ECCV 2026: IGAR restores instruction sensitivity in Vision-Language-Action models under contradictory instructions."
     >
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://ray-nh.github.io/igar/">
@@ -47,18 +47,21 @@
             Restoring Linguistic Grounding in VLA Models via Train-Free Attention Recalibration
           </h1>
           <div class="authors" aria-label="Paper authors">
-            <span>Ninghao Zhang<sup>1*</sup></span>
-            <span>Bin Zhu<sup>2*</sup></span>
-            <span>Shijie Zhou<sup>3</sup></span>
-            <span>Jingjing Chen<sup>3</sup></span>
+            <span><a href="https://scholar.google.com/citations?user=hQHm5psAAAAJ&amp;hl=zh-CN" target="_blank" rel="noreferrer">Ninghao Zhang</a><sup>1*</sup></span>
+            <span><a href="https://binzhubz.github.io/" target="_blank" rel="noreferrer">Bin Zhu</a><sup>2*†</sup></span>
+            <span><a href="https://scholar.google.com/citations?user=RuP2L88AAAAJ&amp;hl=zh-CN" target="_blank" rel="noreferrer">Shijie Zhou</a><sup>3</sup></span>
+            <span><a href="https://jingjing1.github.io/" target="_blank" rel="noreferrer">Jingjing Chen</a><sup>3</sup></span>
           </div>
           <div class="affiliations" aria-label="Author affiliations">
             <a href="https://www.tsinghua.edu.cn/en/"><sup>1</sup> Tsinghua University</a>
             <a href="https://www.smu.edu.sg/"><sup>2</sup> Singapore Management University</a>
             <a href="https://www.fudan.edu.cn/en/"><sup>3</sup> Fudan University</a>
           </div>
-          <p class="contribution-note"><sup>*</sup> Equal contribution</p>
-          <p class="venue">ECCV 2026 Poster</p>
+          <p class="contribution-note">
+            <span><sup>*</sup> Equal contribution</span>
+            <span><sup>†</sup> Corresponding author and project lead</span>
+          </p>
+          <p class="venue">ECCV 2026</p>
           <div class="actions" aria-label="Project links">
             <a class="button primary" href="https://arxiv.org/abs/2603.06001" target="_blank" rel="noreferrer">Paper</a>
             <a class="button primary" href="#video">Video</a>
@@ -81,7 +84,11 @@
             </p>
           </div>
           <div class="abstract-motivation">
-            <h3>VLA policies can follow visual priors even when an instruction contradicts the scene.</h3>
+            <h3>
+              Linguistic blindness is the tendency of VLA policies to prioritize visual priors over
+              instruction semantics, executing a plausible action even when the instruction is incompatible
+              with the scene.
+            </h3>
             <figure class="module-figure">
               <img
                 src="assets/figures/motion.png"
@@ -272,7 +279,6 @@
   author={Ninghao Zhang and Bin Zhu and Shijie Zhou and Jingjing Chen},
   booktitle={European Conference on Computer Vision (ECCV)},
   year={2026},
-  note={Poster},
   url={https://arxiv.org/abs/2603.06001}
 }</code></pre>
         </div>
@@ -298,7 +304,9 @@
         <div class="container">
           <h2 class="section-title">ICBench Rollout Gallery</h2>
           <p class="section-intro">
-            Select a task to compare normal and contradictory instructions, with and without IGAR.
+            Under valid instructions, IGAR preserves the baseline policy's real success. When the modified
+            instruction is incompatible with the unchanged scene, a language-grounded policy should abstain:
+            IGAR turns the baseline's fake success into a deserved failure.
           </p>
           <div class="demo-controls">
             <div id="demo-tabs" class="demo-tabs" role="tablist" aria-label="ICBench tasks"></div>
@@ -313,7 +321,7 @@
     </main>
 
     <footer class="site-footer">
-      <p>ECCV 2026 Poster project page.</p>
+      <p>ECCV 2026 project page.</p>
       <div>
         <a href="https://arxiv.org/abs/2603.06001" target="_blank" rel="noreferrer">Paper</a>
         <a href="#top">Back to top</a>

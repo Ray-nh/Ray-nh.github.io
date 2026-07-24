@@ -2,53 +2,83 @@ const demoTasks = [
   {
     title: "Open the middle drawer",
     folder: "task-01-open-middle-drawer",
-    note: "Drawer manipulation under normal and contradictory language.",
+    model: "π₀",
+    normalPrompt: "open the middle drawer of the cabinet",
+    modifiedPrompt: "open the yellow middle drawer of the cabinet",
   },
   {
     title: "Put the cream cheese",
     folder: "task-02-put-cream-cheese",
-    note: "Object placement with visual priors held fixed.",
+    model: "π₀.₅",
+    normalPrompt: "put the cream cheese in the bowl",
+    modifiedPrompt: "put the cream cheese in the white bowl",
   },
   {
     title: "Pick up the black bowl I",
     folder: "task-03-pick-up-black-bowl",
-    note: "Attribute contradiction for a target object.",
+    model: "OpenVLA-OFT",
+    normalPrompt: "pick up the black bowl in the top drawer of the cabinet and place it on the plate",
+    modifiedPrompt: "pick up the black bowl in the top drawer of the cabinet and place it against the plate",
   },
   {
     title: "Pick up the black bowl II",
     folder: "task-04-pick-up-black-bowl",
-    note: "A second rollout for the same object family.",
+    model: "OpenVLA-OFT",
+    normalPrompt: "pick up the black bowl on the ramekin and place it on the plate",
+    modifiedPrompt: "pick up the white bowl on the ramekin and place it on the black plate",
   },
   {
     title: "Pick up the ketchup",
     folder: "task-05-pick-up-ketchup",
-    note: "Contradictory instructions with visually plausible execution paths.",
+    model: "π₀",
+    normalPrompt: "pick up the ketchup and place it in the basket",
+    modifiedPrompt: "pick up the ketchup and place it in the orange basket",
   },
   {
     title: "Pick up the milk",
     folder: "task-06-pick-up-milk",
-    note: "Comparing baseline and recalibrated policies.",
+    model: "OpenVLA-OFT",
+    normalPrompt: "pick up the milk and place it in the basket",
+    modifiedPrompt: "pick up the milk and place it under the basket",
   },
   {
     title: "Place the blue cube",
     folder: "task-07-place-blue-cube",
-    note: "Real-world inspired cube placement behavior.",
+    model: "π₀",
+    normalPrompt: "place the blue cube into the open drawer",
+    modifiedPrompt: "place the red cube into the open drawer",
     upright: true,
     playbackRate: 2,
   },
 ];
 
 const demoVariants = [
-  { file: "normal-baseline.mp4", label: "Normal / Baseline", classes: [] },
-  { file: "normal-igar.mp4", label: "Normal / IGAR", classes: ["is-igar"] },
+  {
+    file: "normal-baseline.mp4",
+    condition: "Normal instruction",
+    policy: "Baseline",
+    outcome: "Real success",
+    classes: [],
+  },
+  {
+    file: "normal-igar.mp4",
+    condition: "Normal instruction",
+    policy: "IGAR",
+    outcome: "Real success",
+    classes: ["is-igar"],
+  },
   {
     file: "contradiction-baseline.mp4",
-    label: "Contradiction / Baseline",
+    condition: "Modified instruction",
+    policy: "Baseline",
+    outcome: "Fake success",
     classes: ["is-contradiction"],
   },
   {
     file: "contradiction-igar.mp4",
-    label: "Contradiction / IGAR",
+    condition: "Modified instruction",
+    policy: "IGAR",
+    outcome: "Deserved failure",
     classes: ["is-contradiction", "is-igar"],
   },
 ];
@@ -67,10 +97,29 @@ function createDemo(task) {
   const title = document.createElement("h3");
   title.textContent = task.title;
 
-  const note = document.createElement("p");
-  note.textContent = task.note;
+  const model = document.createElement("p");
+  model.className = "task-model";
+  model.textContent = `Model: ${task.model}`;
 
-  heading.append(title, note);
+  const prompts = document.createElement("div");
+  prompts.className = "prompt-comparison";
+
+  const normalPrompt = document.createElement("p");
+  const normalLabel = document.createElement("strong");
+  normalLabel.textContent = "Normal prompt";
+  const normalText = document.createElement("span");
+  normalText.textContent = task.normalPrompt;
+  normalPrompt.append(normalLabel, normalText);
+
+  const modifiedPrompt = document.createElement("p");
+  const modifiedLabel = document.createElement("strong");
+  modifiedLabel.textContent = "Modified prompt";
+  const modifiedText = document.createElement("span");
+  modifiedText.textContent = task.modifiedPrompt;
+  modifiedPrompt.append(modifiedLabel, modifiedText);
+
+  prompts.append(normalPrompt, modifiedPrompt);
+  heading.append(title, model, prompts);
 
   const grid = document.createElement("div");
   grid.className = "clip-grid";
@@ -93,15 +142,29 @@ function createDemo(task) {
       video.playbackRate = task.playbackRate || 1;
     });
     video.setAttribute("playsinline", "");
-    video.setAttribute("aria-label", `${task.title}: ${variant.label}`);
+    video.setAttribute(
+      "aria-label",
+      `${task.title}: ${variant.condition}, ${variant.policy}, ${variant.outcome}`,
+    );
 
     const source = document.createElement("source");
     source.src = `assets/videos/demo/${task.folder}/${variant.file}`;
     source.type = "video/mp4";
 
     const caption = document.createElement("figcaption");
-    caption.textContent = variant.label;
+    const condition = document.createElement("span");
+    condition.className = "clip-condition";
+    condition.textContent = variant.condition;
 
+    const policy = document.createElement("span");
+    policy.className = "clip-policy";
+    policy.textContent = variant.policy;
+
+    const outcome = document.createElement("strong");
+    outcome.className = "clip-outcome";
+    outcome.textContent = variant.outcome;
+
+    caption.append(condition, policy, outcome);
     video.append(source);
     figure.append(video, caption);
     grid.append(figure);
