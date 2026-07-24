@@ -3,50 +3,50 @@ const demoTasks = [
     title: "Open the middle drawer",
     folder: "task-01-open-middle-drawer",
     model: "π₀",
-    normalPrompt: "open the middle drawer of the cabinet",
-    modifiedPrompt: "open the yellow middle drawer of the cabinet",
+    normalInstruction: "open the middle drawer of the cabinet",
+    icbenchInstruction: "open the yellow middle drawer of the cabinet",
   },
   {
     title: "Put the cream cheese",
     folder: "task-02-put-cream-cheese",
     model: "π₀.₅",
-    normalPrompt: "put the cream cheese in the bowl",
-    modifiedPrompt: "put the cream cheese in the white bowl",
+    normalInstruction: "put the cream cheese in the bowl",
+    icbenchInstruction: "put the cream cheese in the white bowl",
   },
   {
     title: "Pick up the black bowl I",
     folder: "task-03-pick-up-black-bowl",
     model: "OpenVLA-OFT",
-    normalPrompt: "pick up the black bowl in the top drawer of the cabinet and place it on the plate",
-    modifiedPrompt: "pick up the black bowl in the top drawer of the cabinet and place it against the plate",
+    normalInstruction: "pick up the black bowl in the top drawer of the cabinet and place it on the plate",
+    icbenchInstruction: "pick up the black bowl in the top drawer of the cabinet and place it against the plate",
   },
   {
     title: "Pick up the black bowl II",
     folder: "task-04-pick-up-black-bowl",
     model: "OpenVLA-OFT",
-    normalPrompt: "pick up the black bowl on the ramekin and place it on the plate",
-    modifiedPrompt: "pick up the white bowl on the ramekin and place it on the black plate",
+    normalInstruction: "pick up the black bowl on the ramekin and place it on the plate",
+    icbenchInstruction: "pick up the white bowl on the ramekin and place it on the black plate",
   },
   {
     title: "Pick up the ketchup",
     folder: "task-05-pick-up-ketchup",
     model: "π₀",
-    normalPrompt: "pick up the ketchup and place it in the basket",
-    modifiedPrompt: "pick up the ketchup and place it in the orange basket",
+    normalInstruction: "pick up the ketchup and place it in the basket",
+    icbenchInstruction: "pick up the ketchup and place it in the orange basket",
   },
   {
     title: "Pick up the milk",
     folder: "task-06-pick-up-milk",
     model: "OpenVLA-OFT",
-    normalPrompt: "pick up the milk and place it in the basket",
-    modifiedPrompt: "pick up the milk and place it under the basket",
+    normalInstruction: "pick up the milk and place it in the basket",
+    icbenchInstruction: "pick up the milk and place it under the basket",
   },
   {
     title: "Place the blue cube",
     folder: "task-07-place-blue-cube",
     model: "π₀",
-    normalPrompt: "place the blue cube into the open drawer",
-    modifiedPrompt: "place the red cube into the open drawer",
+    normalInstruction: "place the blue cube into the open drawer",
+    icbenchInstruction: "place the red cube into the open drawer",
     upright: true,
     playbackRate: 2,
   },
@@ -69,14 +69,14 @@ const demoVariants = [
   },
   {
     file: "contradiction-baseline.mp4",
-    condition: "Modified instruction",
+    condition: "ICBench instruction",
     policy: "Baseline",
     outcome: "Fake success",
     classes: ["is-contradiction"],
   },
   {
     file: "contradiction-igar.mp4",
-    condition: "Modified instruction",
+    condition: "ICBench instruction",
     policy: "IGAR",
     outcome: "Deserved failure",
     classes: ["is-contradiction", "is-igar"],
@@ -101,25 +101,25 @@ function createDemo(task) {
   model.className = "task-model";
   model.textContent = `Model: ${task.model}`;
 
-  const prompts = document.createElement("div");
-  prompts.className = "prompt-comparison";
+  const instructions = document.createElement("div");
+  instructions.className = "instruction-comparison";
 
-  const normalPrompt = document.createElement("p");
+  const normalInstruction = document.createElement("p");
   const normalLabel = document.createElement("strong");
-  normalLabel.textContent = "Normal prompt";
+  normalLabel.textContent = "Normal instruction";
   const normalText = document.createElement("span");
-  normalText.textContent = task.normalPrompt;
-  normalPrompt.append(normalLabel, normalText);
+  normalText.textContent = task.normalInstruction;
+  normalInstruction.append(normalLabel, normalText);
 
-  const modifiedPrompt = document.createElement("p");
-  const modifiedLabel = document.createElement("strong");
-  modifiedLabel.textContent = "Modified prompt";
-  const modifiedText = document.createElement("span");
-  modifiedText.textContent = task.modifiedPrompt;
-  modifiedPrompt.append(modifiedLabel, modifiedText);
+  const icbenchInstruction = document.createElement("p");
+  const icbenchLabel = document.createElement("strong");
+  icbenchLabel.textContent = "ICBench instruction";
+  const icbenchText = document.createElement("span");
+  icbenchText.textContent = task.icbenchInstruction;
+  icbenchInstruction.append(icbenchLabel, icbenchText);
 
-  prompts.append(normalPrompt, modifiedPrompt);
-  heading.append(title, model, prompts);
+  instructions.append(normalInstruction, icbenchInstruction);
+  heading.append(title, model, instructions);
 
   const grid = document.createElement("div");
   grid.className = "clip-grid";
@@ -222,7 +222,7 @@ if (copyButton && bibtex) {
       copyButton.textContent = "Copied";
       copyButton.classList.add("copied");
       window.setTimeout(() => {
-        copyButton.textContent = "Copy BibTeX";
+        copyButton.textContent = "Copy";
         copyButton.classList.remove("copied");
       }, 1800);
     } catch {

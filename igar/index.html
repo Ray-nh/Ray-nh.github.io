@@ -58,10 +58,10 @@
             <a href="https://www.fudan.edu.cn/en/"><sup>3</sup> Fudan University</a>
           </div>
           <p class="contribution-note">
-            <span><sup>*</sup> Equal contribution</span>
-            <span><sup>†</sup> Corresponding author and project lead</span>
+            <span class="author-role"><sup>*</sup> Equal contribution</span>
+            <span class="author-role"><sup>†</sup> Corresponding author &amp; project lead</span>
           </p>
-          <p class="venue">ECCV 2026</p>
+          <p class="venue">ECCV 2026 <span aria-hidden="true">🏆</span></p>
           <div class="actions" aria-label="Project links">
             <a class="button primary" href="https://arxiv.org/abs/2603.06001" target="_blank" rel="noreferrer">Paper</a>
             <a class="button primary" href="#video">Video</a>
@@ -268,22 +268,6 @@
         </div>
       </section>
 
-      <section class="section citation" id="citation">
-        <div class="container narrow">
-          <div class="citation-heading">
-            <h2 class="section-title">BibTeX</h2>
-            <button class="copy-button" type="button" aria-label="Copy BibTeX citation">Copy BibTeX</button>
-          </div>
-          <pre><code id="bibtex">@inproceedings{zhang2026restoring,
-  title={Restoring Linguistic Grounding in VLA Models via Train-Free Attention Recalibration},
-  author={Ninghao Zhang and Bin Zhu and Shijie Zhou and Jingjing Chen},
-  booktitle={European Conference on Computer Vision (ECCV)},
-  year={2026},
-  url={https://arxiv.org/abs/2603.06001}
-}</code></pre>
-        </div>
-      </section>
-
       <section class="section is-light" id="video">
         <div class="container">
           <h2 class="section-title">Video</h2>
@@ -304,7 +288,7 @@
         <div class="container">
           <h2 class="section-title">ICBench Rollout Gallery</h2>
           <p class="section-intro">
-            Under valid instructions, IGAR preserves the baseline policy's real success. When the modified
+            Under valid instructions, IGAR preserves the baseline policy's real success. When the ICBench
             instruction is incompatible with the unchanged scene, a language-grounded policy should abstain:
             IGAR turns the baseline's fake success into a deserved failure.
           </p>
@@ -316,6 +300,22 @@
             </label>
           </div>
           <div id="demo-gallery" class="demo-gallery" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="section citation" id="citation">
+        <div class="container narrow">
+          <div class="citation-heading">
+            <h2 class="section-title">BibTeX</h2>
+            <button class="copy-button" type="button" aria-label="Copy BibTeX citation">Copy</button>
+          </div>
+          <pre><code id="bibtex">@inproceedings{zhang2026restoring,
+  title={Restoring Linguistic Grounding in VLA Models via Train-Free Attention Recalibration},
+  author={Ninghao Zhang and Bin Zhu and Shijie Zhou and Jingjing Chen},
+  booktitle={European Conference on Computer Vision (ECCV)},
+  year={2026},
+  url={https://arxiv.org/abs/2603.06001}
+}</code></pre>
         </div>
       </section>
     </main>
