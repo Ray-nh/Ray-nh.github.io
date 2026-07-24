@@ -3,24 +3,51 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Restoring Linguistic Grounding in VLA Models</title>
+    <title>IGAR | Restoring Linguistic Grounding in VLA Models</title>
     <meta
       name="description"
-      content="ECCV 2026 project page for Restoring Linguistic Grounding in VLA Models via Train-Free Attention Recalibration."
+      content="ECCV 2026 Poster project page for Restoring Linguistic Grounding in VLA Models via Train-Free Attention Recalibration."
     >
+    <meta
+      name="keywords"
+      content="Vision-Language-Action, VLA, linguistic grounding, attention recalibration, robotics, ECCV 2026"
+    >
+    <meta name="author" content="Ninghao Zhang, Bin Zhu, Shijie Zhou, Jingjing Chen">
     <meta property="og:title" content="Restoring Linguistic Grounding in VLA Models">
     <meta
       property="og:description"
-      content="IGAR restores instruction sensitivity in Vision-Language-Action models under contradictory instructions."
+      content="ECCV 2026 Poster: IGAR restores instruction sensitivity in Vision-Language-Action models under contradictory instructions."
     >
-    <meta property="og:image" content="assets/figures/motion.png">
-    <meta name="theme-color" content="#1b2a2f">
-    <link rel="stylesheet" href="styles.css">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://ray-nh.github.io/igar/">
+    <meta property="og:image" content="https://ray-nh.github.io/igar/assets/figures/motion.png">
+    <meta name="citation_title" content="Restoring Linguistic Grounding in VLA Models via Train-Free Attention Recalibration">
+    <meta name="citation_author" content="Ninghao Zhang">
+    <meta name="citation_author" content="Bin Zhu">
+    <meta name="citation_author" content="Shijie Zhou">
+    <meta name="citation_author" content="Jingjing Chen">
+    <meta name="citation_conference_title" content="European Conference on Computer Vision (ECCV)">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2603.06001">
+    <meta name="theme-color" content="#f7f9f8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    >
+    <link rel="icon" href="assets/logos/tsinghua.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="project.css">
   </head>
   <body>
     <header class="site-nav" aria-label="Primary navigation">
       <a class="brand" href="#top" aria-label="IGAR project home">IGAR</a>
-      <nav>
+      <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav aria-label="Page sections">
         <a href="#abstract">Abstract</a>
         <a href="#method">Method</a>
         <a href="#video">Video</a>
@@ -33,11 +60,17 @@
     <main id="top">
       <section class="hero" aria-label="Project overview">
         <div class="hero-content">
-          <p class="eyebrow">ECCV 2026 · Vision-Language-Action Models</p>
-          <h1>Restoring Linguistic Grounding in VLA Models via Train-Free Attention Recalibration</h1>
-          <p class="authors">
-            Ninghao Zhang<sup>1</sup> · Bin Zhu<sup>2</sup> · Shijie Zhou<sup>3</sup> · Jingjing Chen<sup>3</sup>
-          </p>
+          <p class="venue"><span>ECCV 2026</span> Poster</p>
+          <h1>
+            Restoring Linguistic Grounding in VLA Models via
+            <span>Train-Free Attention Recalibration</span>
+          </h1>
+          <div class="authors" aria-label="Paper authors">
+            <span>Ninghao Zhang<sup>1</sup></span>
+            <span>Bin Zhu<sup>2</sup></span>
+            <span>Shijie Zhou<sup>3</sup></span>
+            <span>Jingjing Chen<sup>3</sup></span>
+          </div>
           <div class="affiliations" aria-label="Author affiliations">
             <a class="affiliation" href="https://www.tsinghua.edu.cn/en/" aria-label="Tsinghua University">
               <img src="assets/logos/tsinghua.svg" alt="Tsinghua University logo">
@@ -53,19 +86,20 @@
             </a>
           </div>
           <p class="hero-lead">
-            IGAR exposes and mitigates linguistic blindness: VLA policies can keep executing visually
-            plausible actions even when the language instruction contradicts the scene.
+            A train-free inference-time intervention that restores instruction sensitivity in
+            Vision-Language-Action models when language contradicts the scene.
           </p>
           <div class="actions" aria-label="Project links">
-            <a class="button primary" href="https://arxiv.org/abs/2603.06001">Paper</a>
-            <span class="button secondary" aria-disabled="true">Code coming soon</span>
+            <a class="button primary" href="https://arxiv.org/pdf/2603.06001" target="_blank" rel="noreferrer">Paper</a>
+            <a class="button secondary" href="https://arxiv.org/abs/2603.06001" target="_blank" rel="noreferrer">arXiv</a>
             <a class="button secondary" href="#video">Video</a>
+            <span class="button muted" aria-disabled="true">Code <small>coming soon</small></span>
           </div>
         </div>
       </section>
 
       <section class="section overview" id="abstract">
-        <div class="section-copy">
+        <div class="section-copy centered">
           <p class="section-kicker">Abstract</p>
           <h2>When language contradicts the scene, should the robot still act?</h2>
           <p>
@@ -103,20 +137,20 @@
       </section>
 
       <section class="section figure-band" aria-label="Linguistic blindness motivation">
-        <figure class="wide-figure">
+        <figure class="wide-figure teaser-figure">
           <img
             src="assets/figures/motion.png"
             alt="Normal instructions succeed while contradictory instructions produce visually plausible but instruction-inconsistent executions."
           >
           <figcaption>
-            VLA policies can complete the same visually plausible trajectory even when the modified
+            Existing VLA policies can follow the same visually plausible trajectory even when the modified
             instruction is logically incompatible with the scene.
           </figcaption>
         </figure>
       </section>
 
       <section class="section method" id="method">
-        <div class="section-copy">
+        <div class="section-copy centered">
           <p class="section-kicker">Method</p>
           <h2>Instruction-Guided Attention Recalibration</h2>
           <p>
@@ -137,23 +171,24 @@
       </section>
 
       <section class="section video-section" id="video">
-        <div class="section-copy">
+        <div class="section-copy centered">
           <p class="section-kicker">Video</p>
-          <h2>Supplementary video</h2>
+          <h2>See IGAR in action</h2>
           <p>
             The supplementary video summarizes the ICBench setting, simulated rollouts, and real-world
             behavior under normal and contradictory instructions.
           </p>
         </div>
         <div class="video-frame">
-          <video controls playsinline preload="metadata" poster="assets/figures/motion.png">
+          <video controls playsinline preload="metadata" poster="assets/figures/motion.png" aria-label="IGAR supplementary video">
             <source src="assets/videos/overview.mp4" type="video/mp4">
+            Your browser does not support the video element.
           </video>
         </div>
       </section>
 
       <section class="section results" id="results">
-        <div class="section-copy">
+        <div class="section-copy centered">
           <p class="section-kicker">Results</p>
           <h2>Recalibration restores language-sensitive behavior</h2>
           <p>
@@ -167,7 +202,7 @@
             <img src="assets/figures/heatmap.png" alt="Attention heatmaps with and without IGAR under normal and contradictory instructions.">
             <figcaption>IGAR redirects attention toward instruction-relevant objects and spatial regions.</figcaption>
           </figure>
-          <figure>
+          <figure class="result-wide">
             <img src="assets/figures/linegraph.png" alt="Hyperparameter sensitivity curves for text-sink decay factor, visual-sink bound, and intervened layers.">
             <figcaption>Hyperparameter sweeps identify stable settings for linguistic grounding.</figcaption>
           </figure>
@@ -183,38 +218,52 @@
       </section>
 
       <section class="section demos" id="demos">
-        <div class="section-copy">
+        <div class="section-copy centered">
           <p class="section-kicker">Demos</p>
           <h2>ICBench rollout gallery</h2>
           <p>
-            Each task compares normal and contradictory instructions, with and without IGAR. Videos are
-            loaded from metadata first so the page remains usable on GitHub Pages.
+            Select a task to compare normal and contradictory instructions, with and without IGAR.
           </p>
         </div>
-        <div id="demo-gallery" class="demo-gallery"></div>
+        <div class="demo-controls">
+          <div id="demo-tabs" class="demo-tabs" role="tablist" aria-label="ICBench tasks"></div>
+          <label class="demo-select-label" for="demo-select">
+            <span>Choose a task</span>
+            <select id="demo-select" aria-label="Choose an ICBench task"></select>
+          </label>
+        </div>
+        <div id="demo-gallery" class="demo-gallery" aria-live="polite"></div>
       </section>
 
       <section class="section citation" id="citation">
-        <div class="section-copy">
-          <p class="section-kicker">Citation</p>
-          <h2>BibTeX</h2>
+        <div class="citation-heading">
+          <div class="section-copy">
+            <p class="section-kicker">Citation</p>
+            <h2>BibTeX</h2>
+          </div>
+          <button class="copy-button" type="button" aria-label="Copy BibTeX citation">Copy BibTeX</button>
         </div>
-        <pre><code>@misc{zhang2026restoring,
+        <pre><code id="bibtex">@inproceedings{zhang2026restoring,
   title={Restoring Linguistic Grounding in VLA Models via Train-Free Attention Recalibration},
   author={Ninghao Zhang and Bin Zhu and Shijie Zhou and Jingjing Chen},
+  booktitle={European Conference on Computer Vision (ECCV)},
   year={2026},
-  eprint={2603.06001},
-  archivePrefix={arXiv},
-  primaryClass={cs.RO},
+  note={Poster},
   url={https://arxiv.org/abs/2603.06001}
 }</code></pre>
       </section>
     </main>
 
     <footer class="site-footer">
-      <p>ECCV 2026 project page for IGAR.</p>
-      <a href="https://arxiv.org/abs/2603.06001">Paper</a>
-      <span>Code coming soon</span>
+      <div>
+        <strong>IGAR</strong>
+        <p>ECCV 2026 Poster</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://arxiv.org/abs/2603.06001" target="_blank" rel="noreferrer">Paper</a>
+        <a href="#video">Video</a>
+        <a href="#top">Back to top</a>
+      </div>
     </footer>
 
     <script src="script.js"></script>
