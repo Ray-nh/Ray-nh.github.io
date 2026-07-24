@@ -130,8 +130,19 @@ h1 {
   color: var(--primary);
 }
 
+.contribution-note {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.contribution-note sup {
+  color: var(--text);
+  font-weight: 700;
+}
+
 .venue {
-  margin: 6px 0 20px;
+  margin: 4px 0 20px;
   color: var(--text);
   font-size: 1.08rem;
   font-weight: 600;
@@ -216,19 +227,6 @@ a.button:hover {
   margin-bottom: 0;
 }
 
-.teaser {
-  padding-top: 34px;
-}
-
-.teaser-title {
-  max-width: 940px;
-  margin: 0 auto 28px;
-  font-size: 1.45rem;
-  font-weight: 700;
-  line-height: 1.55;
-  text-align: center;
-}
-
 .module-figure {
   margin: 0 auto;
   text-align: center;
@@ -241,14 +239,39 @@ a.button:hover {
   border-radius: 10px;
 }
 
-.teaser .module-figure,
+.abstract-motivation .module-figure,
 .method .module-figure {
   max-width: 1080px;
 }
 
-.teaser .module-figure img,
+.abstract-motivation .module-figure img,
 .method .module-figure img {
   box-shadow: var(--shadow-md);
+}
+
+.abstract-copy {
+  max-width: var(--narrow-width);
+  margin: 0 auto 40px;
+}
+
+.abstract-motivation {
+  padding-top: 34px;
+  border-top: 1px solid var(--border);
+}
+
+.abstract-motivation h3,
+.method-title {
+  max-width: 940px;
+  margin: 0 auto 26px;
+  color: var(--text);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.method-title {
+  margin-bottom: 20px;
 }
 
 figcaption {
@@ -274,10 +297,6 @@ figcaption {
   aspect-ratio: 16 / 9;
   object-fit: contain;
   background: #111827;
-}
-
-.results {
-  background: #ffffff;
 }
 
 .result-module {
@@ -687,10 +706,6 @@ figcaption {
     padding: 52px 18px;
   }
 
-  .teaser {
-    padding-top: 30px;
-  }
-
   .section-title {
     margin-bottom: 24px;
     font-size: 1.85rem;
@@ -705,7 +720,8 @@ figcaption {
     text-align: left;
   }
 
-  .teaser-title {
+  .abstract-motivation h3,
+  .method-title {
     font-size: 1.18rem;
   }
 

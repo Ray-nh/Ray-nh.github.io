@@ -47,8 +47,8 @@
             Restoring Linguistic Grounding in VLA Models via Train-Free Attention Recalibration
           </h1>
           <div class="authors" aria-label="Paper authors">
-            <span>Ninghao Zhang<sup>1</sup></span>
-            <span>Bin Zhu<sup>2</sup></span>
+            <span>Ninghao Zhang<sup>1*</sup></span>
+            <span>Bin Zhu<sup>2*</sup></span>
             <span>Shijie Zhou<sup>3</sup></span>
             <span>Jingjing Chen<sup>3</sup></span>
           </div>
@@ -57,6 +57,7 @@
             <a href="https://www.smu.edu.sg/"><sup>2</sup> Singapore Management University</a>
             <a href="https://www.fudan.edu.cn/en/"><sup>3</sup> Fudan University</a>
           </div>
+          <p class="contribution-note"><sup>*</sup> Equal contribution</p>
           <p class="venue">ECCV 2026 Poster</p>
           <div class="actions" aria-label="Project links">
             <a class="button primary" href="https://arxiv.org/abs/2603.06001" target="_blank" rel="noreferrer">Paper</a>
@@ -66,43 +67,39 @@
         </div>
       </section>
 
-      <section class="section teaser">
-        <div class="container">
-          <h2 class="teaser-title">
-            VLA policies can follow visual priors even when an instruction contradicts the scene.
-          </h2>
-          <figure class="module-figure">
-            <img
-              src="assets/figures/motion.png"
-              alt="Normal instructions succeed while contradictory instructions produce visually plausible but instruction-inconsistent executions."
-            >
-            <figcaption>
-              Existing policies can execute the same visually plausible trajectory even when the
-              modified instruction is logically incompatible with the scene.
-            </figcaption>
-          </figure>
-        </div>
-      </section>
-
       <section class="section is-light" id="abstract">
-        <div class="container narrow">
+        <div class="container">
           <h2 class="section-title">Abstract</h2>
-          <div class="content">
+          <div class="content abstract-copy">
             <p>
-            We study a reliability failure in modern Vision-Language-Action models: under
-            out-of-distribution contradictory instructions, policies often ignore instruction
-            semantics and execute actions supported by visual priors. We introduce ICBench, a
-            controlled diagnostic benchmark built from LIBERO, and propose Instruction-Guided
-            Attention Recalibration (IGAR), a train-free inference-time intervention that shifts
-            attention back toward instruction tokens without retraining or architecture changes.
+              We study a reliability failure in modern Vision-Language-Action models: under
+              out-of-distribution contradictory instructions, policies often ignore instruction
+              semantics and execute actions supported by visual priors. We introduce ICBench, a
+              controlled diagnostic benchmark built from LIBERO, and propose Instruction-Guided
+              Attention Recalibration (IGAR), a train-free inference-time intervention that shifts
+              attention back toward instruction tokens without retraining or architecture changes.
             </p>
+          </div>
+          <div class="abstract-motivation">
+            <h3>VLA policies can follow visual priors even when an instruction contradicts the scene.</h3>
+            <figure class="module-figure">
+              <img
+                src="assets/figures/motion.png"
+                alt="Normal instructions succeed while contradictory instructions produce visually plausible but instruction-inconsistent executions."
+              >
+              <figcaption>
+                Existing policies can execute the same visually plausible trajectory even when the
+                modified instruction is logically incompatible with the scene.
+              </figcaption>
+            </figure>
           </div>
         </div>
       </section>
 
       <section class="section method" id="method">
         <div class="container">
-          <h2 class="section-title">Instruction-Guided Attention Recalibration</h2>
+          <h2 class="section-title">Method</h2>
+          <h3 class="method-title">Instruction-Guided Attention Recalibration</h3>
           <p class="section-intro">
             IGAR detects sink tokens through hidden-state spikes, selects grounding heads with
             cross-modal imbalance, and redistributes attention toward non-sink instruction tokens.
@@ -120,42 +117,16 @@
         </div>
       </section>
 
-      <section class="section is-light" id="video">
+      <section class="section is-light results" id="results">
         <div class="container">
-          <h2 class="section-title">Video</h2>
+          <h2 class="section-title">Experimental Results</h2>
           <p class="section-intro">
-            The project video presents the ICBench setting, simulated rollouts, and real-world
-            behavior under normal and contradictory instructions.
+            We first test whether IGAR restores language-sensitive behavior, then verify that it preserves
+            normal task performance and examine why the intervention works.
           </p>
-          <div class="video-frame">
-            <video controls playsinline preload="metadata" poster="assets/figures/motion.png" aria-label="IGAR project video">
-              <source src="assets/videos/overview.mp4" type="video/mp4">
-              Your browser does not support the video element.
-            </video>
-          </div>
-        </div>
-      </section>
-
-      <section class="section results" id="results">
-        <div class="container">
-          <h2 class="section-title">Main Results</h2>
 
           <article class="result-module">
-            <h3 class="result-title">1. IGAR redirects attention toward language-relevant regions</h3>
-            <figure class="module-figure attention-figure">
-              <img
-                src="assets/figures/heatmap.png"
-                alt="Attention maps with and without IGAR under normal and contradictory instructions."
-              >
-              <figcaption>
-                The baseline follows visually salient regions regardless of instruction semantics, while IGAR
-                restores attention to the instructed object and spatial relation.
-              </figcaption>
-            </figure>
-          </article>
-
-          <article class="result-module">
-            <h3 class="result-title">2. IGAR restores linguistic grounding under contradictory instructions</h3>
+            <h3 class="result-title">1. IGAR restores linguistic grounding under contradictory instructions</h3>
             <p class="result-intro">
               Under contradiction, a lower Success Rate (SR) means fewer instruction-inconsistent executions,
               while a higher Linguistic Grounding Score (LGS) indicates stronger language influence.
@@ -204,7 +175,7 @@
           </article>
 
           <article class="result-module">
-            <h3 class="result-title">3. Normal task performance is preserved</h3>
+            <h3 class="result-title">2. Normal task performance is preserved</h3>
             <p class="result-intro">
               Applying IGAR to valid instructions changes average success rates only marginally across all
               three VLA backbones.
@@ -234,6 +205,20 @@
               <figcaption>
                 Success Rate (%) under normal instructions. IGAR preserves the original policy behavior while
                 adding only 7.0 ms of per-step latency for OpenVLA-OFT.
+              </figcaption>
+            </figure>
+          </article>
+
+          <article class="result-module">
+            <h3 class="result-title">3. IGAR redirects attention toward language-relevant regions</h3>
+            <figure class="module-figure attention-figure">
+              <img
+                src="assets/figures/heatmap.png"
+                alt="Attention maps with and without IGAR under normal and contradictory instructions."
+              >
+              <figcaption>
+                The baseline follows visually salient regions regardless of instruction semantics, while IGAR
+                restores attention to the instructed object and spatial relation.
               </figcaption>
             </figure>
           </article>
@@ -276,23 +261,6 @@
         </div>
       </section>
 
-      <section class="section is-light demos" id="demos">
-        <div class="container">
-          <h2 class="section-title">ICBench Rollout Gallery</h2>
-          <p class="section-intro">
-            Select a task to compare normal and contradictory instructions, with and without IGAR.
-          </p>
-          <div class="demo-controls">
-            <div id="demo-tabs" class="demo-tabs" role="tablist" aria-label="ICBench tasks"></div>
-            <label class="demo-select-label" for="demo-select">
-              <span>Choose a task</span>
-              <select id="demo-select" aria-label="Choose an ICBench task"></select>
-            </label>
-          </div>
-          <div id="demo-gallery" class="demo-gallery" aria-live="polite"></div>
-        </div>
-      </section>
-
       <section class="section citation" id="citation">
         <div class="container narrow">
           <div class="citation-heading">
@@ -307,6 +275,39 @@
   note={Poster},
   url={https://arxiv.org/abs/2603.06001}
 }</code></pre>
+        </div>
+      </section>
+
+      <section class="section is-light" id="video">
+        <div class="container">
+          <h2 class="section-title">Video</h2>
+          <p class="section-intro">
+            The project video presents the ICBench setting, the IGAR mechanism, quantitative findings,
+            simulated rollouts, and real-world behavior.
+          </p>
+          <div class="video-frame">
+            <video controls playsinline preload="metadata" poster="assets/figures/motion.png" aria-label="IGAR project video">
+              <source src="assets/videos/overview.mp4" type="video/mp4">
+              Your browser does not support the video element.
+            </video>
+          </div>
+        </div>
+      </section>
+
+      <section class="section demos" id="demos">
+        <div class="container">
+          <h2 class="section-title">ICBench Rollout Gallery</h2>
+          <p class="section-intro">
+            Select a task to compare normal and contradictory instructions, with and without IGAR.
+          </p>
+          <div class="demo-controls">
+            <div id="demo-tabs" class="demo-tabs" role="tablist" aria-label="ICBench tasks"></div>
+            <label class="demo-select-label" for="demo-select">
+              <span>Choose a task</span>
+              <select id="demo-select" aria-label="Choose an ICBench task"></select>
+            </label>
+          </div>
+          <div id="demo-gallery" class="demo-gallery" aria-live="polite"></div>
         </div>
       </section>
     </main>
