@@ -515,6 +515,10 @@ figcaption {
   transform: rotate(180deg);
 }
 
+.clip.is-upright video {
+  transform: none;
+}
+
 .clip figcaption {
   min-height: 48px;
   display: flex;

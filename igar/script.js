@@ -33,6 +33,8 @@ const demoTasks = [
     title: "Place the blue cube",
     folder: "task-07-place-blue-cube",
     note: "Real-world inspired cube placement behavior.",
+    upright: true,
+    playbackRate: 2,
   },
 ];
 
@@ -76,6 +78,7 @@ function createDemo(task) {
   demoVariants.forEach((variant) => {
     const figure = document.createElement("figure");
     figure.classList.add("clip", ...variant.classes);
+    if (task.upright) figure.classList.add("is-upright");
 
     const video = document.createElement("video");
     video.autoplay = true;
@@ -84,6 +87,11 @@ function createDemo(task) {
     video.defaultMuted = true;
     video.preload = "auto";
     video.poster = `assets/videos/demo/${task.folder}/${variant.file.replace(".mp4", ".jpg")}`;
+    video.playbackRate = task.playbackRate || 1;
+    video.defaultPlaybackRate = task.playbackRate || 1;
+    video.addEventListener("loadedmetadata", () => {
+      video.playbackRate = task.playbackRate || 1;
+    });
     video.setAttribute("playsinline", "");
     video.setAttribute("aria-label", `${task.title}: ${variant.label}`);
 
