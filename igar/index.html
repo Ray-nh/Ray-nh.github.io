@@ -37,33 +37,14 @@
       rel="stylesheet"
     >
     <link rel="icon" href="assets/logos/tsinghua.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="project.css">
+    <link rel="stylesheet" href="oscbench.css">
   </head>
   <body>
-    <header class="site-nav" aria-label="Primary navigation">
-      <a class="brand" href="#top" aria-label="IGAR project home">IGAR</a>
-      <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <nav aria-label="Page sections">
-        <a href="#abstract">Abstract</a>
-        <a href="#method">Method</a>
-        <a href="#video">Video</a>
-        <a href="#results">Results</a>
-        <a href="#demos">Demos</a>
-        <a href="#citation">Citation</a>
-      </nav>
-    </header>
-
     <main id="top">
-      <section class="hero" aria-label="Project overview">
-        <div class="hero-content">
-          <p class="venue"><span>ECCV 2026</span> Poster</p>
+      <section class="publication-header" aria-label="Project overview">
+        <div class="container publication-content">
           <h1>
-            Restoring Linguistic Grounding in VLA Models via
-            <span>Train-Free Attention Recalibration</span>
+            Restoring Linguistic Grounding in VLA Models via Train-Free Attention Recalibration
           </h1>
           <div class="authors" aria-label="Paper authors">
             <span>Ninghao Zhang<sup>1</sup></span>
@@ -72,178 +53,254 @@
             <span>Jingjing Chen<sup>3</sup></span>
           </div>
           <div class="affiliations" aria-label="Author affiliations">
-            <a class="affiliation" href="https://www.tsinghua.edu.cn/en/" aria-label="Tsinghua University">
-              <img src="assets/logos/tsinghua.svg" alt="Tsinghua University logo">
-              <span><sup>1</sup> Tsinghua University</span>
-            </a>
-            <a class="affiliation" href="https://www.smu.edu.sg/" aria-label="Singapore Management University">
-              <img src="assets/logos/smu.svg" alt="Singapore Management University logo">
-              <span><sup>2</sup> Singapore Management University</span>
-            </a>
-            <a class="affiliation" href="https://www.fudan.edu.cn/en/" aria-label="Fudan University">
-              <img src="assets/logos/fudan.svg" alt="Fudan University logo">
-              <span><sup>3</sup> Fudan University</span>
-            </a>
+            <a href="https://www.tsinghua.edu.cn/en/"><sup>1</sup> Tsinghua University</a>
+            <a href="https://www.smu.edu.sg/"><sup>2</sup> Singapore Management University</a>
+            <a href="https://www.fudan.edu.cn/en/"><sup>3</sup> Fudan University</a>
           </div>
-          <p class="hero-lead">
-            A train-free inference-time intervention that restores instruction sensitivity in
-            Vision-Language-Action models when language contradicts the scene.
-          </p>
+          <p class="venue">ECCV 2026 Poster</p>
           <div class="actions" aria-label="Project links">
             <a class="button primary" href="https://arxiv.org/pdf/2603.06001" target="_blank" rel="noreferrer">Paper</a>
-            <a class="button secondary" href="https://arxiv.org/abs/2603.06001" target="_blank" rel="noreferrer">arXiv</a>
-            <a class="button secondary" href="#video">Video</a>
-            <span class="button muted" aria-disabled="true">Code <small>coming soon</small></span>
+            <a class="button primary" href="https://arxiv.org/abs/2603.06001" target="_blank" rel="noreferrer">arXiv</a>
+            <a class="button primary" href="#video">Video</a>
+            <span class="button primary disabled" aria-disabled="true">Code <small>coming soon</small></span>
           </div>
         </div>
       </section>
 
-      <section class="section overview" id="abstract">
-        <div class="section-copy centered">
-          <p class="section-kicker">Abstract</p>
-          <h2>When language contradicts the scene, should the robot still act?</h2>
-          <p>
+      <section class="section teaser">
+        <div class="container">
+          <h2 class="teaser-title">
+            VLA policies can follow visual priors even when an instruction contradicts the scene.
+          </h2>
+          <figure class="module-figure">
+            <img
+              src="assets/figures/motion.png"
+              alt="Normal instructions succeed while contradictory instructions produce visually plausible but instruction-inconsistent executions."
+            >
+            <figcaption>
+              Existing policies can execute the same visually plausible trajectory even when the
+              modified instruction is logically incompatible with the scene.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section is-light" id="abstract">
+        <div class="container narrow">
+          <h2 class="section-title">Abstract</h2>
+          <div class="content">
+            <p>
             We study a reliability failure in modern Vision-Language-Action models: under
             out-of-distribution contradictory instructions, policies often ignore instruction
             semantics and execute actions supported by visual priors. We introduce ICBench, a
             controlled diagnostic benchmark built from LIBERO, and propose Instruction-Guided
             Attention Recalibration (IGAR), a train-free inference-time intervention that shifts
             attention back toward instruction tokens without retraining or architecture changes.
-          </p>
+            </p>
+          </div>
         </div>
-
-        <div class="highlight-grid" aria-label="Project highlights">
-          <article class="highlight">
-            <span>01</span>
-            <h3>Linguistic Blindness</h3>
-            <p>Contradictory commands reveal policies that follow visual shortcuts instead of language.</p>
-          </article>
-          <article class="highlight">
-            <span>02</span>
-            <h3>ICBench</h3>
-            <p>Controlled instruction contradictions isolate language-action coupling across 30 LIBERO tasks.</p>
-          </article>
-          <article class="highlight">
-            <span>03</span>
-            <h3>Train-Free IGAR</h3>
-            <p>Attention recalibration runs during inference and plugs into existing transformer-based VLAs.</p>
-          </article>
-          <article class="highlight">
-            <span>04</span>
-            <h3>Real Robot Check</h3>
-            <p>Franka experiments show IGAR prevents manipulation triggered by inconsistent instructions.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section figure-band" aria-label="Linguistic blindness motivation">
-        <figure class="wide-figure teaser-figure">
-          <img
-            src="assets/figures/motion.png"
-            alt="Normal instructions succeed while contradictory instructions produce visually plausible but instruction-inconsistent executions."
-          >
-          <figcaption>
-            Existing VLA policies can follow the same visually plausible trajectory even when the modified
-            instruction is logically incompatible with the scene.
-          </figcaption>
-        </figure>
       </section>
 
       <section class="section method" id="method">
-        <div class="section-copy centered">
-          <p class="section-kicker">Method</p>
-          <h2>Instruction-Guided Attention Recalibration</h2>
-          <p>
+        <div class="container">
+          <h2 class="section-title">Instruction-Guided Attention Recalibration</h2>
+          <p class="section-intro">
             IGAR detects sink tokens through hidden-state spikes, selects grounding heads with
             cross-modal imbalance, and redistributes attention toward non-sink instruction tokens.
             The intervention operates entirely inside the forward pass.
           </p>
+          <figure class="module-figure">
+            <img
+              src="assets/figures/architechture.png"
+              alt="Overview of the IGAR framework with sink token detection, grounding head selection, and attention redistribution."
+            >
+            <figcaption>
+              IGAR is a plug-and-play inference-time module for restoring language influence during action generation.
+            </figcaption>
+          </figure>
         </div>
-        <figure class="wide-figure">
-          <img
-            src="assets/figures/architechture.png"
-            alt="Overview of the IGAR framework with sink token detection, grounding head selection, and attention redistribution."
-          >
-          <figcaption>
-            IGAR is a plug-and-play inference-time module for restoring language influence during action generation.
-          </figcaption>
-        </figure>
       </section>
 
-      <section class="section video-section" id="video">
-        <div class="section-copy centered">
-          <p class="section-kicker">Video</p>
-          <h2>See IGAR in action</h2>
-          <p>
-            The supplementary video summarizes the ICBench setting, simulated rollouts, and real-world
+      <section class="section is-light" id="video">
+        <div class="container">
+          <h2 class="section-title">Video</h2>
+          <p class="section-intro">
+            The project video presents the ICBench setting, simulated rollouts, and real-world
             behavior under normal and contradictory instructions.
           </p>
-        </div>
-        <div class="video-frame">
-          <video controls playsinline preload="metadata" poster="assets/figures/motion.png" aria-label="IGAR supplementary video">
-            <source src="assets/videos/overview.mp4" type="video/mp4">
-            Your browser does not support the video element.
-          </video>
+          <div class="video-frame">
+            <video controls playsinline preload="metadata" poster="assets/figures/motion.png" aria-label="IGAR project video">
+              <source src="assets/videos/overview.mp4" type="video/mp4">
+              Your browser does not support the video element.
+            </video>
+          </div>
         </div>
       </section>
 
       <section class="section results" id="results">
-        <div class="section-copy centered">
-          <p class="section-kicker">Results</p>
-          <h2>Recalibration restores language-sensitive behavior</h2>
-          <p>
-            Attention visualizations, sensitivity analyses, and real-world evaluations show that IGAR
-            reduces spurious execution under contradictory instructions while preserving normal task behavior.
-          </p>
-        </div>
+        <div class="container">
+          <h2 class="section-title">Main Results</h2>
 
-        <div class="result-grid">
-          <figure>
-            <img src="assets/figures/heatmap.png" alt="Attention heatmaps with and without IGAR under normal and contradictory instructions.">
-            <figcaption>IGAR redirects attention toward instruction-relevant objects and spatial regions.</figcaption>
-          </figure>
-          <figure class="result-wide">
-            <img src="assets/figures/linegraph.png" alt="Hyperparameter sensitivity curves for text-sink decay factor, visual-sink bound, and intervened layers.">
-            <figcaption>Hyperparameter sweeps identify stable settings for linguistic grounding.</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/figures/realworld.png" alt="Real-world Franka robot experiments comparing baseline Pi0 and Pi0 with IGAR.">
-            <figcaption>On a real Franka arm, IGAR turns fake success into deserved failure under contradictions.</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/figures/supp_heatmap_combined.png" alt="Supplementary heatmap comparison across normal and contradictory instruction cases.">
-            <figcaption>Supplementary visualizations show the same grounding trend across more scenes.</figcaption>
-          </figure>
+          <article class="result-module">
+            <h3 class="result-title">1. IGAR redirects attention toward language-relevant regions</h3>
+            <figure class="module-figure attention-figure">
+              <img
+                src="assets/figures/heatmap.png"
+                alt="Attention maps with and without IGAR under normal and contradictory instructions."
+              >
+              <figcaption>
+                The baseline follows visually salient regions regardless of instruction semantics, while IGAR
+                restores attention to the instructed object and spatial relation.
+              </figcaption>
+            </figure>
+          </article>
+
+          <article class="result-module">
+            <h3 class="result-title">2. IGAR restores linguistic grounding under contradictory instructions</h3>
+            <p class="result-intro">
+              Under contradiction, a lower Success Rate (SR) means fewer instruction-inconsistent executions,
+              while a higher Linguistic Grounding Score (LGS) indicates stronger language influence.
+            </p>
+            <figure class="paper-table">
+              <div class="table-scroll">
+                <table>
+                  <thead>
+                    <tr>
+                      <th rowspan="2">Suite</th>
+                      <th rowspan="2">Type</th>
+                      <th colspan="2">π<sub>0</sub></th>
+                      <th colspan="2">π<sub>0.5</sub></th>
+                      <th colspan="2">OpenVLA-OFT</th>
+                    </tr>
+                    <tr>
+                      <th>SR ↓</th>
+                      <th>LGS ↑</th>
+                      <th>SR ↓</th>
+                      <th>LGS ↑</th>
+                      <th>SR ↓</th>
+                      <th>LGS ↑</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th rowspan="4">Spatial</th><td>V1</td><td>76.4</td><td class="strong">20.4</td><td>95.8</td><td>1.6</td><td>86.4</td><td class="strong">11.2</td></tr>
+                    <tr><td>V2</td><td>84.2</td><td class="strong">12.6</td><td>93.6</td><td>3.8</td><td>86.2</td><td class="strong">11.4</td></tr>
+                    <tr><td>V3</td><td>80.4</td><td class="strong">16.4</td><td>94.8</td><td>2.6</td><td>90.2</td><td>7.4</td></tr>
+                    <tr><td>V4</td><td>76.2</td><td class="strong">20.6</td><td>99.6</td><td>-2.2</td><td>88.4</td><td>9.2</td></tr>
+                    <tr><th rowspan="4">Object</th><td>V1</td><td>88.2</td><td class="strong">10.6</td><td>94.2</td><td>4.2</td><td>88.4</td><td class="strong">10.0</td></tr>
+                    <tr><td>V2</td><td>86.4</td><td class="strong">12.4</td><td>90.4</td><td>8.0</td><td>84.2</td><td class="strong">14.2</td></tr>
+                    <tr><td>V3</td><td>93.6</td><td>5.2</td><td>87.6</td><td class="strong">10.8</td><td>88.2</td><td class="strong">10.2</td></tr>
+                    <tr><td>V4</td><td>90.4</td><td>8.4</td><td>88.4</td><td class="strong">10.0</td><td>82.4</td><td class="strong">16.0</td></tr>
+                    <tr><th rowspan="4">Goal</th><td>V1</td><td>46.4</td><td class="strong">49.4</td><td>90.2</td><td>7.4</td><td>66.4</td><td class="strong">31.6</td></tr>
+                    <tr><td>V2</td><td>40.2</td><td class="strong">55.6</td><td>82.8</td><td class="strong">14.8</td><td>70.2</td><td class="strong">27.8</td></tr>
+                    <tr><td>V3</td><td>46.2</td><td class="strong">49.6</td><td>92.4</td><td>5.2</td><td>64.2</td><td class="strong">33.8</td></tr>
+                    <tr><td>V4</td><td>36.4</td><td class="strong best">59.4</td><td>96.2</td><td>1.4</td><td>58.4</td><td class="strong">39.6</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <figcaption>
+                IGAR mitigation on ICBench. Green cells mark LGS ≥ 10. The largest gain appears on
+                π<sub>0</sub> in the Goal suite, reaching 59.4 LGS for V4.
+              </figcaption>
+            </figure>
+          </article>
+
+          <article class="result-module">
+            <h3 class="result-title">3. Normal task performance is preserved</h3>
+            <p class="result-intro">
+              Applying IGAR to valid instructions changes average success rates only marginally across all
+              three VLA backbones.
+            </p>
+            <figure class="paper-table compact-table">
+              <div class="table-scroll">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Suite</th>
+                      <th>π<sub>0</sub></th>
+                      <th>π<sub>0</sub> + IGAR</th>
+                      <th>π<sub>0.5</sub></th>
+                      <th>π<sub>0.5</sub> + IGAR</th>
+                      <th>OpenVLA-OFT</th>
+                      <th>OFT + IGAR</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th>Spatial</th><td>96.8</td><td>96.4 <small>(-0.4)</small></td><td>97.4</td><td class="strong">98.2 <small>(+0.8)</small></td><td>97.6</td><td>97.6 <small>(+0.0)</small></td></tr>
+                    <tr><th>Object</th><td>98.8</td><td>98.2 <small>(-0.6)</small></td><td>98.4</td><td>94.4 <small>(-4.0)</small></td><td>98.4</td><td class="strong">99.8 <small>(+1.4)</small></td></tr>
+                    <tr><th>Goal</th><td>95.8</td><td>95.6 <small>(-0.2)</small></td><td>97.6</td><td>96.4 <small>(-1.2)</small></td><td>98.0</td><td class="strong">98.2 <small>(+0.2)</small></td></tr>
+                    <tr class="average"><th>Average</th><td>97.1</td><td>96.7 <small>(-0.4)</small></td><td>97.8</td><td>96.3 <small>(-1.5)</small></td><td>98.0</td><td class="strong">98.5 <small>(+0.5)</small></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <figcaption>
+                Success Rate (%) under normal instructions. IGAR preserves the original policy behavior while
+                adding only 7.0 ms of per-step latency for OpenVLA-OFT.
+              </figcaption>
+            </figure>
+          </article>
+
+          <article class="result-module">
+            <h3 class="result-title">4. The effect transfers to a real robot</h3>
+            <div class="result-split">
+              <div class="result-copy">
+                <ul>
+                  <li>Both policies complete the task when the instruction matches the scene.</li>
+                  <li>The baseline still acts under contradiction, producing a visually plausible but invalid success.</li>
+                  <li>IGAR interrupts the inconsistent execution through hovering or empty grasp attempts.</li>
+                </ul>
+              </div>
+              <figure class="module-figure">
+                <img
+                  src="assets/figures/realworld.png"
+                  alt="Real-world Franka experiments comparing the baseline policy with IGAR."
+                >
+                <figcaption>
+                  Real-world evaluation on the task “place the blue cube into the open drawer.”
+                </figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <article class="result-module">
+            <h3 class="result-title">5. IGAR remains stable around its selected configuration</h3>
+            <figure class="module-figure sensitivity-figure">
+              <img
+                src="assets/figures/linegraph.png"
+                alt="Sensitivity curves for text-sink decay, visual-sink bound, and intervened layers."
+              >
+              <figcaption>
+                The selected decay factor, head-selection bound, and intervention depth lie in stable
+                high-performing regions for linguistic grounding.
+              </figcaption>
+            </figure>
+          </article>
         </div>
       </section>
 
-      <section class="section demos" id="demos">
-        <div class="section-copy centered">
-          <p class="section-kicker">Demos</p>
-          <h2>ICBench rollout gallery</h2>
-          <p>
+      <section class="section is-light demos" id="demos">
+        <div class="container">
+          <h2 class="section-title">ICBench Rollout Gallery</h2>
+          <p class="section-intro">
             Select a task to compare normal and contradictory instructions, with and without IGAR.
           </p>
+          <div class="demo-controls">
+            <div id="demo-tabs" class="demo-tabs" role="tablist" aria-label="ICBench tasks"></div>
+            <label class="demo-select-label" for="demo-select">
+              <span>Choose a task</span>
+              <select id="demo-select" aria-label="Choose an ICBench task"></select>
+            </label>
+          </div>
+          <div id="demo-gallery" class="demo-gallery" aria-live="polite"></div>
         </div>
-        <div class="demo-controls">
-          <div id="demo-tabs" class="demo-tabs" role="tablist" aria-label="ICBench tasks"></div>
-          <label class="demo-select-label" for="demo-select">
-            <span>Choose a task</span>
-            <select id="demo-select" aria-label="Choose an ICBench task"></select>
-          </label>
-        </div>
-        <div id="demo-gallery" class="demo-gallery" aria-live="polite"></div>
       </section>
 
       <section class="section citation" id="citation">
-        <div class="citation-heading">
-          <div class="section-copy">
-            <p class="section-kicker">Citation</p>
-            <h2>BibTeX</h2>
+        <div class="container narrow">
+          <div class="citation-heading">
+            <h2 class="section-title">BibTeX</h2>
+            <button class="copy-button" type="button" aria-label="Copy BibTeX citation">Copy BibTeX</button>
           </div>
-          <button class="copy-button" type="button" aria-label="Copy BibTeX citation">Copy BibTeX</button>
-        </div>
-        <pre><code id="bibtex">@inproceedings{zhang2026restoring,
+          <pre><code id="bibtex">@inproceedings{zhang2026restoring,
   title={Restoring Linguistic Grounding in VLA Models via Train-Free Attention Recalibration},
   author={Ninghao Zhang and Bin Zhu and Shijie Zhou and Jingjing Chen},
   booktitle={European Conference on Computer Vision (ECCV)},
@@ -251,17 +308,14 @@
   note={Poster},
   url={https://arxiv.org/abs/2603.06001}
 }</code></pre>
+        </div>
       </section>
     </main>
 
     <footer class="site-footer">
+      <p>ECCV 2026 Poster project page.</p>
       <div>
-        <strong>IGAR</strong>
-        <p>ECCV 2026 Poster</p>
-      </div>
-      <div class="footer-links">
         <a href="https://arxiv.org/abs/2603.06001" target="_blank" rel="noreferrer">Paper</a>
-        <a href="#video">Video</a>
         <a href="#top">Back to top</a>
       </div>
     </footer>
